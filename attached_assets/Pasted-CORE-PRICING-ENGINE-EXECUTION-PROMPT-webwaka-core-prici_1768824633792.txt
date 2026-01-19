@@ -1,0 +1,244 @@
+CORE PRICING ENGINE EXECUTION PROMPT
+
+(webwaka-core-pricing)
+
+⸻
+
+PLATFORM & ACCOUNT
+
+Execution Platform: Replit
+Replit Account: Replit-XX (the account you are currently using for core services)
+Target Repository:
+👉 https://github.com/changerplanet/webwaka-core-pricing
+
+IMPORTANT
+	•	This repo already exists (scaffolded by Manus)
+	•	Branch protection is currently disabled
+	•	You may push directly to main
+	•	GitHub + Vercel are already configured — do NOT modify infra
+
+⸻
+
+CONTEXT (READ CAREFULLY)
+
+You are implementing Phase 3B-3: Core Pricing Engine for the WebWaka Modular Rebuild.
+
+This is a TypeScript-only, headless core library.
+
+It MUST conform to:
+	•	WebWaka Ecosystem Constitution v1.3.1
+	•	Phase 3B-2 Pricing Domain Model (LOCKED)
+	•	Core Ledger invariants (append-only, event-driven)
+	•	Registry + Capability system
+	•	Nigeria-first, mobile-first, offline-aware principles
+
+⸻
+
+ABSOLUTE SCOPE BOUNDARIES (NON-NEGOTIABLE)
+
+❌ DO NOT:
+	•	Build any UI
+	•	Build dashboards
+	•	Build payment logic
+	•	Build subscription state machines
+	•	Talk to payment gateways
+	•	Apply discounts, coupons, taxes, or incentives
+	•	Store balances
+	•	Mutate historical pricing data
+
+✅ YOU MUST:
+	•	Implement deterministic pricing evaluation
+	•	Produce ledger-ready pricing results
+	•	Enforce immutability and versioning
+	•	Remain pure and side-effect free
+
+⸻
+
+WHAT YOU ARE BUILDING
+
+Repository
+
+webwaka-core-pricing
+
+Type
+
+TypeScript library (no server, no frontend)
+
+Purpose
+
+Evaluate pricing plans and emit ledger-ready pricing intents.
+
+⸻
+
+REQUIRED DOMAIN IMPLEMENTATION (EXACT)
+
+You MUST implement exactly the following (no more, no less).
+
+⸻
+
+1️⃣ Domain Models (Zod-validated)
+
+Implement the canonical models from Phase 3B-2:
+	•	PricingPlan
+	•	PricingPlanVersion
+	•	PricingComponent union:
+	•	FlatFeeComponent
+	•	UsageComponent
+	•	SeatComponent
+	•	TieredComponent
+	•	TimeBoundComponent
+	•	PricingContext
+	•	PricingResult
+	•	PricingLineItem
+
+All models must:
+	•	Be immutable by design
+	•	Be validated using zod
+	•	Reject invalid or partial inputs
+
+⸻
+
+2️⃣ Pricing Engine (Core Service)
+
+Implement:
+
+class PricingEngine {
+  evaluate(
+    planVersion: PricingPlanVersion,
+    context: PricingContext
+  ): PricingResult
+}
+
+Rules
+	•	Pure function
+	•	Deterministic
+	•	No IO
+	•	No persistence
+	•	Same input → same output
+
+⸻
+
+3️⃣ Ledger Compatibility (CRITICAL)
+
+The output must be directly consumable by:
+
+webwaka-core-ledger.recordEvent()
+
+This means:
+	•	Clear line items
+	•	Explicit totals
+	•	Currency present
+	•	No side effects
+
+DO NOT write to the ledger.
+DO NOT import ledger code.
+Just be compatible.
+
+⸻
+
+4️⃣ Capabilities (module.manifest.json)
+
+Register exactly these capabilities:
+
+pricing:evaluate
+pricing:plan.define
+pricing:plan.version
+pricing:preview
+
+Declare dependencies on:
+	•	webwaka-core-ledger
+	•	webwaka-core-entitlements (logical, not implementation)
+
+⸻
+
+5️⃣ Tests (MANDATORY)
+
+You MUST implement tests proving:
+
+✅ Determinism
+✅ Immutability of plan versions
+✅ Correct evaluation of:
+	•	Flat fee
+	•	Usage pricing
+	•	Seat pricing
+	•	Tiered pricing
+	•	Time-bound components
+✅ Tenant isolation
+✅ Nigeria-first defaults (NGN)
+
+HARD STOP TEST (REQUIRED)
+
+A test that proves:
+
+“Given a PricingPlanVersion and PricingContext, the engine produces a deterministic, ledger-ready PricingResult without touching payments, subscriptions, or incentives.”
+
+⸻
+
+6️⃣ Coverage Requirements
+	•	≥ 80% overall coverage
+	•	All component types tested
+	•	Edge cases included
+
+⸻
+
+FILE STRUCTURE (EXPECTED)
+
+src/
+ ├─ engine/
+ │   └─ pricing-engine.ts
+ ├─ models/
+ │   ├─ pricing-plan.ts
+ │   ├─ pricing-components.ts
+ │   └─ pricing-context.ts
+ ├─ evaluators/
+ │   ├─ flat.ts
+ │   ├─ usage.ts
+ │   ├─ seat.ts
+ │   ├─ tiered.ts
+ │   └─ time.ts
+ ├─ types.ts
+ └─ index.ts
+
+tests/
+ └─ pricing-engine.test.ts
+
+
+⸻
+
+CI / TOOLING
+
+Use existing repo setup:
+	•	npm test
+	•	npm run build
+	•	npm run lint
+	•	npm run typecheck
+
+DO NOT change CI configuration.
+
+⸻
+
+DELIVERY REQUIREMENTS
+
+When complete, respond with ONLY:
+
+✅ Completion Summary including:
+	•	What was implemented
+	•	Test results + coverage
+	•	Hard Stop proof explanation
+	•	Capabilities registered
+	•	Confirmation that scope boundaries were respected
+
+Then:
+
+⛔ STOP
+⛔ Await authorization for Phase 3C — Core Entitlements
+
+⸻
+
+FINAL ACKNOWLEDGEMENT
+
+Before coding, reply internally (not to user):
+
+“I understand the scope, invariants, and constraints and will implement exactly as specified.”
+
+Then proceed.

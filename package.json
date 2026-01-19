@@ -1,0 +1,22 @@
+{
+  "name": "webwaka-core-pricing",
+  "version": "0.0.0",
+  "description": "Pricing & Entitlements - Pricing rules and discount management",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "webwaka",
+    "pricing",
+    "core"
+  ],
+  "author": "WebWaka Team",
+  "license": "TBD",
+  "dependencies": {
+    "typescript": "^5.9.3"
+  }
+}
