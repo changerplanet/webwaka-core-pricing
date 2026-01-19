@@ -1,0 +1,16 @@
+{
+  "moduleId": "webwaka-core-pricing",
+  "version": "0.0.0",
+  "class": "core",
+  "name": "Pricing Core",
+  "description": "Pricing & Entitlements - Pricing rules and discount management",
+  "repository": "https://github.com/changerplanet/webwaka-core-pricing",
+  "author": "WebWaka Team",
+  "license": "TBD",
+  "capabilities": [],
+  "dependencies": [],
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "main": "./dist/index.js"
+  }
+}
