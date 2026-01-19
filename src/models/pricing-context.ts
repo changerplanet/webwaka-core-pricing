@@ -29,7 +29,7 @@ export const PricingLineItemSchema = z.object({
   unitPrice: z.number().nonnegative(),
   amount: z.number().nonnegative(),
   currency: CurrencySchema,
-  metadata: z.record(z.unknown()).optional(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
 });
 export type PricingLineItem = z.infer<typeof PricingLineItemSchema>;
 

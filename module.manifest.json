@@ -7,8 +7,16 @@
   "repository": "https://github.com/changerplanet/webwaka-core-pricing",
   "author": "WebWaka Team",
   "license": "TBD",
-  "capabilities": [],
-  "dependencies": [],
+  "capabilities": [
+    "pricing:evaluate",
+    "pricing:plan.define",
+    "pricing:plan.version",
+    "pricing:preview"
+  ],
+  "dependencies": [
+    "webwaka-core-ledger",
+    "webwaka-core-entitlements"
+  ],
   "exports": {
     "types": "./dist/index.d.ts",
     "main": "./dist/index.js"

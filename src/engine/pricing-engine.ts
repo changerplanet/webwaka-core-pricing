@@ -32,7 +32,7 @@ export class PricingEngine {
       subtotal,
       total,
       currency: context.currency,
-      computedAt: new Date().toISOString(),
+      computedAt: context.evaluationDate,
       deterministic: true,
     };
 
