@@ -17,6 +17,9 @@
   "author": "WebWaka Team",
   "license": "TBD",
   "dependencies": {
-    "typescript": "^5.9.3"
+    "@vitest/coverage-v8": "^4.0.17",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.17",
+    "zod": "^4.3.5"
   }
 }
